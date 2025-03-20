@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [cfb5c77] - 2025-03-19 - Landing Page Updated
+#### Added
+- Enhanced landing page styles and layout
+- New Radix UI package dependencies:
+  - @radix-ui/react-dialog: ^1.1.6
+  - @radix-ui/react-dropdown-menu: ^2.1.6
+  - @radix-ui/react-slot: ^1.1.2
+#### Changed
+- Refactored app/page.tsx with improved layout and content structure
+- Modified layout.tsx to adjust container sizing (width changed to 70-90vw responsive)
+- Updated globals.css with improved font configuration
+
 ### [f3850de] - 2025-03-19 - Enabling Dark Themes
 #### Added
 - Theme provider implementation with next-themes

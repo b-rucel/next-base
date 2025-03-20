@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/contexts/theme-provider";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -35,7 +30,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <main className="sm:container mx-auto w-[90vw] lg:w-[70vw] h-auto scroll-smooth">
           {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
