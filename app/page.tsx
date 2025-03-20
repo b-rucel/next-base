@@ -11,11 +11,11 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="fixed right-0 bottom-0 min-w-full min-h-full"
+          className="fixed right-0 bottom-0 min-w-full min-h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/30744462/13151651_2560_1440_30fps.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/3141208/3141208-uhd_2560_1440_25fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
       </div>
       <Link href="https://github.com/b-rucel/aria-docs" target="_blank"
         className="mb-5 sm:text-lg flex items-center gap-2 underline underline-offset-4 sm:-mt-12"

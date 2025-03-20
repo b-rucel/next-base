@@ -26,13 +26,13 @@ export default function RootLayout({
         <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet" type="text/css" />
       </head>
       <body
-        className={`${outfit.variable} antialiased flex min-h-screen flex-col`}
+        className={`${outfit.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="system" attribute="class" enableSystem disableTransitionOnChange>
           <Navbar />
-          <main className="flex-1">
-            {children}
+          <main className="sm:container mx-auto w-[90vw] lg:w-[70vw] h-auto scroll-smooth">
+          {children}
           </main>
           <Footer />
         </ThemeProvider>
