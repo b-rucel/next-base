@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [86749cf] - 2025-03-20 - Accessibility Improvement
+#### Added
+- Added `SheetTitle` component with `sr-only` class to `SheetContent` for screen reader accessibility.
+
 ### [704a174] - 2025-03-20 - Landing Page Cleanup
 #### Changed
 - Improved landing page layout and readability
