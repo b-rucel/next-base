@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [704a174] - 2025-03-20 - Landing Page Cleanup
+#### Changed
+- Improved landing page layout and readability
+  - Cleaned up text formatting and spacing
+  - Enhanced video background implementation
+  - Optimized footer positioning to stick to bottom
+
 ### [0fffb1e] - 2025-03-19 - Header and Footer for Landing Page
 #### Added
 - New UI components:
@@ -81,4 +88,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Next.js 15.2.3
   - React 19.0.0
   - TypeScript configuration
-  - ESLint setup 
+  - ESLint setup

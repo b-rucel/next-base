@@ -59,7 +59,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           {/* Placeholder for Algolia Search */}
-          <div className="md:w-[200px] w-[150px] h-9 rounded-md border border-input bg-transparent hidden sm:block"></div>
+          <div className="md:w-[200px] w-[150px] h-9 rounded-md border border-input bg-transparent"></div>
 
           <div className="flex items-center gap-2">
             <Link
