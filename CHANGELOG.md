@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0fffb1e] - 2025-03-19 - Header and Footer for Landing Page
+#### Added
+- New UI components:
+  - Navbar with logo, navigation links, and theme toggle
+  - Footer component for landing page
+  - Anchor component for navigation
+  - Theme toggle functionality
+  - UI components: button, dropdown-menu, sheet
+- Added background video to public assets
+#### Changed
+- Updated app layout and page structure
+- Modified tailwind configuration
+
 ### [cfb5c77] - 2025-03-19 - Landing Page Updated
 #### Added
 - Enhanced landing page styles and layout
