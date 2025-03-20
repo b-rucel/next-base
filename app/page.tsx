@@ -9,7 +9,7 @@ export default function Home() {
         <video autoPlay loop muted playsInline
           className="fixed right-0 bottom-0 min-w-full min-h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/30744462/13151651_2560_1440_30fps.mp4" type="video/mp4" />
+          <source src="/background.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
       </div>

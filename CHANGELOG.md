@@ -7,9 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [f2074d7] - 2025-03-20 - Documentation Navigation System
+#### Added
+- New documentation layout system with responsive sidebar
+  - Added `app/docs/layout.tsx` with flexible layout structure
+  - Implemented `DocsMenu` component for navigation
+  - Added `SubLink` component for nested navigation items
+- New UI Components:
+  - Added `ScrollArea` component for better navigation experience
+  - Added `Collapsible` component for expandable menu items
+  - Added `Dialog` component with accessibility features
+#### Changed
+- Enhanced `Leftbar` component:
+  - Improved mobile responsiveness
+  - Added documentation menu integration
+  - Added scroll area for better navigation
+- Updated video source in landing page to use local file
+#### Dependencies
+- Added @radix-ui/react-collapsible: ^1.1.3
+- Added @radix-ui/react-scroll-area: ^1.2.3
+
+
 ### [86749cf] - 2025-03-20 - Accessibility Improvement
 #### Added
 - Added `SheetTitle` component with `sr-only` class to `SheetContent` for screen reader accessibility.
+
 
 ### [704a174] - 2025-03-20 - Landing Page Cleanup
 #### Changed
@@ -17,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Cleaned up text formatting and spacing
   - Enhanced video background implementation
   - Optimized footer positioning to stick to bottom
+
 
 ### [0fffb1e] - 2025-03-19 - Header and Footer for Landing Page
 #### Added
@@ -31,6 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated app layout and page structure
 - Modified tailwind configuration
 
+
 ### [cfb5c77] - 2025-03-19 - Landing Page Updated
 #### Added
 - Enhanced landing page styles and layout
@@ -43,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modified layout.tsx to adjust container sizing (width changed to 70-90vw responsive)
 - Updated globals.css with improved font configuration
 
+
 ### [f3850de] - 2025-03-19 - Enabling Dark Themes
 #### Added
 - Theme provider implementation with next-themes
@@ -54,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated project title to "Aria Docs Clone"
 #### Fixed
 - Theme provider type definitions using React.ComponentProps
+
 
 ### [ebbc8d2] - 2025-03-19 - Cloudflare Deploy
 #### Added
@@ -68,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated next.config.ts for Cloudflare compatibility
   - Enabled static export
   - Configured unoptimized images
+
 
 ### [f56db15] - 2025-03-19 - First Commit
 #### Added
@@ -84,6 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - lucide-react: ^0.483.0
   - tailwind-merge: ^3.0.2
   - tw-animate-css: ^1.2.4
+
 
 ### [f3afd3d] - 2025-03-19 - Initial Commit
 #### Added
