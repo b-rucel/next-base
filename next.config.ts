@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.freepik.com/**",
+      },
+    ],
   },
   experimental: {
   }
