@@ -2,19 +2,18 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { Coffee } from "lucide-react";
 import Link from "next/link";
 // import { buttonVariants } from "./ui/button";
+
 import Anchor from "./anchor";
-// import { SheetLeftbar } from "./leftbar";
-// import { page_routes } from "@/lib/routes-config";
-import { SheetClose } from "@/components/ui/sheet";
-// import { Button } from "@/components/ui/button";
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SheetLeftbar } from "@/components/leftbar";
+import { page_routes } from "@/lib/routes-config";
+import { SheetClose } from "@/components/ui/sheet";
+
 // import AlgoliaSearch from "./algolia-search";
 
 export const NAVLINKS = [
   {
     title: "Documentation",
-    href: `/docs`,
+    href: `/docs${page_routes[0].href}`,
   },
   {
     title: "Blog",
