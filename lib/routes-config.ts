@@ -37,7 +37,6 @@ export const ROUTES: EachRoute[] = [
           { title: "Custom", href: "/custom" },
         ],
       },
-      { title: "Algolia Search", href: "/algolia-search", tag: "New" },
       { title: "Themes", href: "/themes" },
       {
         title: "Customize",

@@ -1,6 +1,6 @@
 import DocsBreadcrumb from "@/components/docs-breadcrumb";
 import Pagination from "@/components/pagination";
-// import Toc from "@/components/toc";
+import Toc from "@/components/toc";
 import { page_routes } from "@/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/lib/markdown";
@@ -34,7 +34,7 @@ export default async function DocsPage(props: PageProps) {
           <Pagination pathname={pathName} />
         </Typography>
       </div>
-      {/* <Toc path={pathName} /> */}
+      <Toc path={pathName} />
     </div>
   );
 }
