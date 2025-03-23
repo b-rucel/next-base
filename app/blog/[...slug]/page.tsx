@@ -10,11 +10,12 @@ import Image from "next/image";
 
 // Update the PageProps type to match Next.js expectations
 type PageProps = {
-  params: { slug: string[] };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ slug: string[] }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   const { slug } = params;
   
   // Use the first element of the slug array
@@ -35,12 +36,13 @@ export async function generateStaticParams() {
   return val.map((it) => ({ slug: [it] }));  // Return slug as an array
 }
 
-export default async function BlogPage({ params }: PageProps) {
+export default async function BlogPage(props: PageProps) {
+  const params = await props.params;
   const { slug } = params;
   
   // Use the first element of the slug array
   const blogSlug = slug[0];
-  
+
   const res = await getBlogForSlug(blogSlug);
   if (!res) notFound();
   
