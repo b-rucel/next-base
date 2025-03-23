@@ -1,0 +1,69 @@
+---
+title: Image and Link
+description: This section provides an overview of how NextBase handles links and images in Markdown.
+---
+
+In NextBase, all links and images written in Markdown are automatically converted to their respective Next.js 15 components. This enables optimal performance through automatic image optimization and enhanced client-side navigation.
+
+## Links
+
+When you create a link in your Markdown, it is converted to the Next.js `Link` component, enabling instant client-side navigation and improved loading times. Here's an example:
+
+### Markdown example
+
+```
+[Visit NextBase Documentation](https://docs.nextbase.dev)
+```
+
+### Rendered Output
+
+The above Markdown is converted to:
+
+```
+<Link 
+    href="/docs/getting-started/introduction" 
+    className="text-primary hover:text-primary/80 transition-colors"
+>
+    Getting Started with NextBase
+</Link>
+```
+
+## Images
+
+Markdown images are automatically transformed into the Next.js `Image` component, providing built-in optimization features like lazy loading, responsive sizing, and automatic WebP conversion. Here's how it works:
+
+### Markdown example
+
+```
+![NextBase Logo](/images/logo.png)
+```
+
+### Rendered Output
+
+The above Markdown is converted to:
+
+```
+<Image
+    src="/images/logo.png"
+    alt="NextBase Logo"
+    width={800}
+    height={400}
+    className="rounded-lg"
+    priority={false}
+/>
+```
+
+## Benefits
+
+- **Automatic Optimization**: Images are automatically optimized for different device sizes and formats
+- **Lazy Loading**: Images are loaded only when they enter the viewport
+- **Responsive Sizing**: Automatically serves the right size image for the user's device
+- **WebP Support**: Converts images to WebP format when supported by the browser
+- **Blur Placeholder**: Optional blur-up placeholder while images load
+
+## Best Practices
+
+- Always provide meaningful `alt` text for accessibility
+- Use appropriate image dimensions to avoid layout shifts
+- Consider setting `priority={true}` for above-the-fold images
+- Optimize source images before adding them to your project
