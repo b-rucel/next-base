@@ -8,13 +8,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 
+// Update the PageProps type to match Next.js expectations
 type PageProps = {
   params: { slug: string[] };
+  searchParams: Record<string, string | string[] | undefined>;
 };
 
-export async function generateMetadata(props: PageProps) {
-  // Ensure params is fully resolved
-  const params = await Promise.resolve(props.params);
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = params;
   
   // Use the first element of the slug array
@@ -35,9 +35,7 @@ export async function generateStaticParams() {
   return val.map((it) => ({ slug: [it] }));  // Return slug as an array
 }
 
-export default async function BlogPage(props: PageProps) {
-  // Ensure params is fully resolved
-  const params = await Promise.resolve(props.params);
+export default async function BlogPage({ params }: PageProps) {
   const { slug } = params;
   
   // Use the first element of the slug array
