@@ -9,15 +9,18 @@ import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string[] };
 };
 
 export async function generateMetadata(props: PageProps) {
-  const params = await props.params;
-
+  // Ensure params is fully resolved
+  const params = await Promise.resolve(props.params);
   const { slug } = params;
-
-  const res = await getBlogForSlug(slug);
+  
+  // Use the first element of the slug array
+  const blogSlug = slug[0];
+  
+  const res = await getBlogForSlug(blogSlug);
   if (!res) return {};
   const { frontmatter } = res;
   return {
@@ -29,16 +32,20 @@ export async function generateMetadata(props: PageProps) {
 export async function generateStaticParams() {
   const val = await getAllBlogStaticPaths();
   if (!val) return [];
-  return val.map((it) => ({ slug: it }));
+  return val.map((it) => ({ slug: [it] }));  // Return slug as an array
 }
 
 export default async function BlogPage(props: PageProps) {
-  const params = await props.params;
-
+  // Ensure params is fully resolved
+  const params = await Promise.resolve(props.params);
   const { slug } = params;
-
-  const res = await getBlogForSlug(slug);
+  
+  // Use the first element of the slug array
+  const blogSlug = slug[0];
+  
+  const res = await getBlogForSlug(blogSlug);
   if (!res) notFound();
+  
   return (
     <div className="lg:w-[60%] sm:[95%] md:[75%] mx-auto">
       <Link

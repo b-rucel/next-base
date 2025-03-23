@@ -270,11 +270,16 @@ export async function getAllBlogStaticPaths() {
 }
 
 export async function getBlogForSlug(slug: string) {
+  console.log('getBlogForSlug', slug)
+  console.log('---------------------------------')
   const blogFile = path.join(process.cwd(), "/contents/blogs/", `${slug}.mdx`);
   try {
+    console.log(`Attempting to read blog file: ${blogFile}`);
     const rawMdx = await fs.readFile(blogFile, "utf-8");
+    console.log(`Successfully read blog file for slug: ${slug}`);
     return await parseMdx<BlogMdxFrontmatter>(rawMdx);
-  } catch {
+  } catch (err) {
+    console.error(`Error reading blog for slug "${slug}":`, err);
     return undefined;
   }
 }
