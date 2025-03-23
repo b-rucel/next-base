@@ -1,49 +1,69 @@
 ---
-title: Code Block
-description: This section previews the Code Block features in markdown.
+title: Image and Link
+description: This section provides an overview of how NextBase handles links and images in Markdown.
 ---
 
-The Code Block in this documentation allows you to display code snippets with optional line numbering and line highlighting.
+In NextBase, all links and images written in Markdown are automatically converted to their respective Next.js 15 components. This enables optimal performance through automatic image optimization and enhanced client-side navigation.
 
-## Preview
+## Links
 
-```
-function isRocketAboutToCrash() {
-    // Check if the rocket is stable
-    if (!isStable()) {
-        NoCrash(); // Prevent the crash
-    }
-}
-```
+When you create a link in your Markdown, it is converted to the Next.js `Link` component, enabling instant client-side navigation and improved loading times. Here's an example:
+
+### Markdown example
 
 ```
-package main
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, world!")
-}
+[Visit NextBase Documentation](https://docs.nextbase.dev)
 ```
 
-In this example, line numbers are displayed for lines 1 to 4. You can specify which lines to highlight using the format `{2,3-5}`.
+### Rendered Output
 
-## Usage
+The above Markdown is converted to:
 
-You can directly use the following syntax to create a code block with line numbers and highlight specific lines:
-
-````
 ```
-function isRocketAboutToCrash() {
-    // Check if the rocket is stable
-    if (!isStable()) {
-        NoCrash(); // Prevent the crash
-    }
-}
+<Link 
+    href="/docs/getting-started/introduction" 
+    className="text-primary hover:text-primary/80 transition-colors"
+>
+    Getting Started with NextBase
+</Link>
 ```
-````
 
-### Features
+## Images
 
-- **Line Numbers**: Enable line numbers by adding `showLineNumbers` after the opening backticks.
-- **Highlight Lines**: Specify lines to highlight using curly braces (e.g., `{2,3-5}`).
-- **Syntax Highlighting**: Use the appropriate language for syntax highlighting.
+Markdown images are automatically transformed into the Next.js `Image` component, providing built-in optimization features like lazy loading, responsive sizing, and automatic WebP conversion. Here's how it works:
+
+### Markdown example
+
+```
+![NextBase Logo](/images/logo.png)
+```
+
+### Rendered Output
+
+The above Markdown is converted to:
+
+```
+<Image
+    src="/images/logo.png"
+    alt="NextBase Logo"
+    width={800}
+    height={400}
+    className="rounded-lg"
+    priority={false}
+/>
+```
+
+## Benefits
+
+- **Automatic Optimization**: Images are automatically optimized for different device sizes and formats
+- **Lazy Loading**: Images are loaded only when they enter the viewport
+- **Responsive Sizing**: Automatically serves the right size image for the user's device
+- **WebP Support**: Converts images to WebP format when supported by the browser
+- **Blur Placeholder**: Optional blur-up placeholder while images load
+
+## Best Practices
+
+- Always provide meaningful `alt` text for accessibility
+- Use appropriate image dimensions to avoid layout shifts
+- Consider setting `priority={true}` for above-the-fold images
+- Optimize source images before adding them to your project
