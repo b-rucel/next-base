@@ -1,0 +1,107 @@
+---
+title: File System
+description: This section provides an overview of how NextBase handles file system view in Markdown.
+---
+
+The `Files` component allows you to display a structured file system within Markdown. It supports files, folders, highlighting, sorting, and indicators for additions or deletions.
+
+## Preview
+
+### Default File Structure
+
+This example represents a Next.js 15 project structure:
+
+<Files
+  items={[
+    { type: "file", name: "package.json" },
+    { type: "file", name: "tsconfig.json" },
+    { type: "file", name: "wrangler.jsonc" },
+    {
+      type: "folder",
+      name: "app",
+      children: [
+        { type: "file", name: "layout.tsx" },
+        { type: "file", name: "page.tsx" },
+        {
+          type: "folder",
+          name: "docs",
+          isOpen: true,
+          children: [
+            { type: "file", name: "layout.tsx" },
+            { type: "file", name: "[[...slug]].tsx" },
+          ],
+        },
+      ],
+    },
+    { type: "file", name: "next.config.ts" },
+    { type: "file", name: ".gitignore" },
+  ]}
+/>
+
+### Sorted File Structure with Changes
+
+In this example, the file system shows Cloudflare Pages deployment configuration:
+
+<Files
+  sorted
+  items={[
+    { type: "file", name: "package.json" },
+    { type: "file", name: "wrangler.jsonc", highlight: true },
+    {
+      type: "folder",
+      name: "app",
+      indicator: "add",
+      children: [
+        { type: "file", name: "layout.tsx" },
+        { type: "file", name: "page.tsx" },
+        {
+          type: "folder",
+          name: "api",
+          isOpen: true,
+          children: [
+            { type: "file", name: "route.ts", highlight: true },
+          ],
+        },
+      ],
+    },
+    { type: "file", name: "next.config.ts", indicator: "modify" },
+  ]}
+/>
+
+## Component Props
+
+| Prop        | Type      | Default | Description                                    |
+|-------------|-----------|---------|------------------------------------------------|
+| `items`     | `Item[]`  | `[]`    | Array of file and folder objects to display    |
+| `sorted`    | `boolean` | `false` | Whether to sort items alphabetically           |
+| `className` | `string`  | `""`    | Additional CSS classes for styling             |
+
+## Item Properties
+
+| Property    | Type                    | Description                                    |
+|-------------|-------------------------|------------------------------------------------|
+| `type`      | `"file"` \| `"folder"`  | Determines if the item is a file or folder     |
+| `name`      | `string`                | Name of the file or folder                     |
+| `children`  | `Item[]`                | Sub-items for folders                          |
+| `isOpen`    | `boolean`               | Whether the folder is expanded                 |
+| `highlight` | `boolean`               | Highlights the item                            |
+| `indicator` | `"add"` \| `"modify"` \| `"delete"` | Shows modification status          |
+
+## Usage Example
+
+```
+<Files
+  sorted
+  items={[
+    { 
+      type: "folder",
+      name: "components",
+      isOpen: true,
+      children: [
+        { type: "file", name: "Button.tsx", highlight: true },
+        { type: "file", name: "Card.tsx", indicator: "add" },
+      ],
+    },
+  ]}
+/>
+```
