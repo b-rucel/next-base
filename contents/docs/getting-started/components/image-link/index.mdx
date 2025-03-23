@@ -11,7 +11,7 @@ When you create a link in your Markdown, it is converted to the Next.js `Link` c
 
 ### Markdown example
 
-```
+```markdown
 [Visit NextBase Documentation](https://docs.nextbase.dev)
 ```
 
@@ -19,7 +19,7 @@ When you create a link in your Markdown, it is converted to the Next.js `Link` c
 
 The above Markdown is converted to:
 
-```
+```markdown
 <Link 
     href="/docs/getting-started/introduction" 
     className="text-primary hover:text-primary/80 transition-colors"
@@ -34,7 +34,7 @@ Markdown images are automatically transformed into the Next.js `Image` component
 
 ### Markdown example
 
-```
+```markdown
 ![NextBase Logo](/images/logo.png)
 ```
 
@@ -42,7 +42,7 @@ Markdown images are automatically transformed into the Next.js `Image` component
 
 The above Markdown is converted to:
 
-```
+```jsx
 <Image
     src="/images/logo.png"
     alt="NextBase Logo"

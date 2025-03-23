@@ -7,7 +7,7 @@ To add custom components in NextBase, follow these steps:
 
 1. **Create Your Component**: First, create your custom component in the `components/markdown` folder. For example, you might create a file named `CustomAlert.tsx`:
 
-```
+```ts
 import { ReactNode } from 'react';
 
 interface CustomAlertProps {
@@ -28,7 +28,7 @@ export default function CustomAlert({ children, type = 'info' }: CustomAlertProp
 
 3. **Add Your Component to the Components Object**: In the `@lib/markdown.ts` file, import your custom component and add it to the `components` object. Here’s how to do it:
 
-```
+```tsx
 import Outlet from "@/components/markdown/outlet";
 
 // Add custom components
@@ -41,7 +41,7 @@ const components = {
 
 ### Markdown Example
 
-```
+```markdown
 <Outlet>
   This is some custom content rendered by the Outlet component!
 </Outlet>
