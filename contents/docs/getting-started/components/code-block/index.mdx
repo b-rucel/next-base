@@ -1,44 +1,54 @@
 ---
-title: Note
-description: This section previews the Note component.
+title: Code Block
+description: This section previews the Code Block features in markdown.
 ---
 
-The `Note` component allows you to display different types of messages such as general notes, warnings, or success notifications. Each type is styled accordingly, providing a clear visual cue to the user.
+The Code Block in this documentation allows you to display code snippets with optional line numbering and line highlighting.
 
 ## Preview
 
-<Note type="note" title="Note">
-  This is a general note to convey information to the user.
-</Note>
-<Note type="danger" title="Danger">
-  This is a danger alert to notify the user of a critical issue.
-</Note>
-<Note type="warning" title="Warning">
-  This is a warning alert for issues that require attention.
-</Note>
-<Note type="success" title="Success">
-  This is a success message to inform the user of successful actions.
-</Note>
-
-## Props
-
-| Prop    | Type                           | Default | Description                                |
-|---------|--------------------------------|---------|--------------------------------------------|
-| `title` | `string`                       | "Note"  | Sets the title of the note.                |
-| `type`  | `"note"`, `"danger"`, `"warning"`, `"success"` | "note"  | Determines the visual style of the note.   |
-
-## Code
-
+```javascript:main.js showLineNumbers {3-4}
+function isRocketAboutToCrash() {
+    // Check if the rocket is stable
+    if (!isStable()) {
+        NoCrash(); // Prevent the crash
+    }
+}
 ```
-<Note type="note" title="Note">
-  This is a general note to convey information to the user.
-</Note>
-<Note type="danger" title="Danger">
-  This is a danger alert to notify the user of a critical issue.
-</Note>
-<Note type="warning" title="Warning">
-  This is a warning alert for issues that require attention.
-</Note>
-<Note type="success" title="Success">
-  This is a success message to inform the user of successful actions.
-</Note>
+
+```go:main.go  showLineNumbers {4-6}
+package main
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, world!")
+}
+```
+<br />
+In these examples, you can see two key features in action:
+
+1. Line numbers are displayed along the left side of each code block using the showLineNumbers option
+2. Specific lines are highlighted: lines 3-4 in the JavaScript example and lines 4-6 in the Go example
+
+You can customize which lines to highlight using curly braces with specific line numbers or ranges (e.g., {2,3-5} ).
+
+## Usage
+
+You can directly use the following syntax to create a code block with line numbers and highlight specific lines:
+
+````md
+```javascript:main.js showLineNumbers {3-4}
+function isRocketAboutToCrash() {
+    // Check if the rocket is stable
+    if (!isStable()) {
+        NoCrash(); // Prevent the crash
+    }
+}
+```
+````
+
+### Features
+
+- **Line Numbers**: Enable line numbers by adding `showLineNumbers` after the opening backticks.
+- **Highlight Lines**: Specify lines to highlight using curly braces (e.g., `{2,3-5}`).
+- **Syntax Highlighting**: Use the appropriate language for syntax highlighting.

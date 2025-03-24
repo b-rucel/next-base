@@ -33,7 +33,7 @@ The core of the project is a recursive data structure that represents the file s
 
 Here’s a basic structure for a folder:
 
-```
+```jsx:data.js
 const folder = {
   id: "1",
   name: "Documents",
@@ -51,7 +51,7 @@ The project includes several key components to handle different aspects of the f
 
 - **FileExplorer**: Displays the entire file system and handles rendering folders and files.
 
-```
+```jsx:file-explorer.jsx
 import React, { useState } from "react";
 import Folder from "./Folder";
 import File from "./File";
@@ -100,7 +100,7 @@ export default FileExplorer;
 
 - **Folder**: Renders folders and handles nested items.
 
-```
+```jsx:folder.jsx
 import React from "react";
 import FileExplorer from "./FileExplorer";
 
@@ -122,7 +122,7 @@ export default Folder;
 
 - **File**: Renders individual files with options to rename and delete.
 
-```
+```jsx:file.jsx
 import React from "react";
 
 const File = ({ file, onRename, onDelete }) => {
@@ -142,7 +142,7 @@ export default File;
 
 State management is handled using React hooks like `useState` to manage the file system data. Actions such as adding, renaming, and deleting items update the state accordingly.
 
-```
+```jsx
 const [files, setFiles] = useState(initialData);
 
 const addItem = (parentId, type) => {
