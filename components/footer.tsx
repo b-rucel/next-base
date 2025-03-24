@@ -24,7 +24,7 @@ export function Footer() {
             The source code is available on{" "}
             <Link
               className="px-1 underline underline-offset-2 mr-[-3px]"
-              href="https://github.com/b-rucel/aria-docs"
+              href="https://github.com/b-rucel/next-base"
               target="_blank"
             >
               GitHub

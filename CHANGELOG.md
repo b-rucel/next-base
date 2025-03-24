@@ -76,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Changed
 - Updated layout.tsx to include ThemeProvider
 - Modified tailwind configuration for dark mode
-- Updated project title to "Aria Docs Clone"
+- Updated project title to "Next Base"
 #### Fixed
 - Theme provider type definitions using React.ComponentProps
 
