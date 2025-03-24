@@ -30,6 +30,12 @@ import {
 } from "@/components/ui/table";
 
 // add custom components
+interface CodeProps {
+  className?: string;
+  children: React.ReactNode;
+  [key: string]: unknown;
+}
+
 const components = {
   Tabs,
   TabsContent,
@@ -49,7 +55,7 @@ const components = {
   tr: TableRow,
   tbody: TableBody,
   t: TableCell,
-  code: async ({ className, children, ...props }: any) => {
+  code: async ({ className, children, ...props }: CodeProps) => {
     const match = /language-(\w+)/.exec(className || '');
     const lang = match ? match[1] : '';
     const showLineNumbers = className?.includes('showLineNumbers');
