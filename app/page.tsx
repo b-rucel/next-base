@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="relative flex sm:min-h-[85.5vh] min-h-[82vh] flex-col sm:items-center justify-center text-center px-2 sm:py-8 py-12">
+      {/*
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <video autoPlay loop muted playsInline
           className="fixed right-0 bottom-0 min-w-full min-h-full object-cover"
@@ -13,6 +14,7 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
       </div>
+      */}
       <Link href="https://github.com/b-rucel/aria-docs" target="_blank"
         className="mb-5 sm:text-lg flex items-center gap-2 underline underline-offset-4 sm:-mt-12"
       >
@@ -27,7 +29,7 @@ export default function Home() {
       </p>
       <div className="sm:flex sm:flex-row grid grid-cols-2 items-center sm;gap-5 gap-3 mb-8">
         <Link href={`/docs/`} className={buttonVariants({ className: "px-6", size: "lg" })}>
-          Get Stared
+          Get Started
         </Link>
         <Link href="/blog" className={buttonVariants({
             variant: "secondary",
