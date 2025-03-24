@@ -61,9 +61,17 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
         rehypePlugins: [
           preProcess,
           rehypeCodeTitles,
+          // Your current configuration looks good, but double-check these options
           [rehypePrism, {
             ignoreMissing: true,
             showLineNumbers: true,
+            aliases: {
+              js: 'javascript',
+              ts: 'typescript',
+              jsx: 'javascript',
+              tsx: 'typescript',
+              mdx: 'markdown'
+            }
           }],
           rehypeSlug,
           rehypeAutolinkHeadings,
