@@ -61,6 +61,7 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
         rehypePlugins: [
           preProcess,
           rehypeCodeTitles,
+          rehypeCodeTitlesWithLogo,
           [rehypePrism, {
             ignoreMissing: true,
             showLineNumbers: true,
