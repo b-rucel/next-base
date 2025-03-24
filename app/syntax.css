@@ -1,12 +1,29 @@
 /**
  * Prism.js syntax highlighting styles - Custom Theme
  */
+pre {
+  background-color: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.dark pre {
+  background-color: #18181b;
+}
+
+pre > code {
+  background-color: transparent;
+  padding: 0;
+  counter-reset: line;
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
   color: #383a42;
   background: none;
   font-family: var(--font-mono);
-  font-size: 0.90rem;
+  font-size: 0.80rem;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -15,6 +32,7 @@ pre[class*="language-"] {
   line-height: 1.6;
   tab-size: 4;
   hyphens: none;
+  margin-bottom: 12px;
 }
 
 pre[class*="language-"] {
@@ -223,3 +241,52 @@ pre[class*="language-"] {
   color: rgb(156, 163, 175);
   content: attr(line);
 }
+
+/* Line number styles */
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+/* Ensure line numbers are visible in dark mode */
+.dark .line-numbers-rows > span:before {
+  color: #666;
+}
+
+.dark .line-numbers .line-numbers-rows {
+  border-right-color: #666;
+}
+
+
+

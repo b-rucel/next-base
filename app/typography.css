@@ -2,6 +2,10 @@
 .prose {
   max-width: 65ch;
   color: var(--tw-prose-body);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .prose :where(h1):not(:where([class~="not-prose"] *)) {
@@ -35,6 +39,10 @@
   margin-top: 1.25em;
   margin-bottom: 1.25em;
   line-height: 1.75;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .prose :where(ul):not(:where([class~="not-prose"] *)) {
@@ -54,12 +62,20 @@
 .prose :where(li):not(:where([class~="not-prose"] *)) {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .prose :where(a):not(:where([class~="not-prose"] *)) {
   color: var(--tw-prose-links);
   text-decoration: underline;
   font-weight: 500;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .prose :where(strong):not(:where([class~="not-prose"] *)) {
@@ -110,3 +126,4 @@
   padding-bottom: 0.5714286em;
   padding-left: 0.5714286em;
 }
+
