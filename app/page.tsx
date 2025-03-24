@@ -15,7 +15,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
       </div>
       */}
-      <Link href="https://github.com/b-rucel/aria-docs" target="_blank"
+      <Link href="https://github.com/b-rucel/next-base" target="_blank"
         className="mb-5 sm:text-lg flex items-center gap-2 underline underline-offset-4 sm:-mt-12"
       >
         Follow along on GitHub{" "}
