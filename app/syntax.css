@@ -1,6 +1,23 @@
 /**
  * Prism.js syntax highlighting styles - Custom Theme
  */
+pre {
+  background-color: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.dark pre {
+  background-color: #18181b;
+}
+
+pre > code {
+  background-color: transparent;
+  padding: 0;
+  counter-reset: line;
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
   color: #383a42;
@@ -270,3 +287,6 @@ pre[class*="language-"].line-numbers > code {
 .dark .line-numbers .line-numbers-rows {
   border-right-color: #666;
 }
+
+
+

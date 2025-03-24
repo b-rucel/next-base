@@ -55,7 +55,7 @@ const components = {
     const showLineNumbers = className?.includes('showLineNumbers');
     
     if (typeof children === 'string' && lang) {
-      const highlighted = await highlightCode(children, lang, { showLineNumbers });
+      const highlighted = await highlightCode(children, lang);
       return (
         <code 
           className={`${className}${showLineNumbers ? ' line-numbers' : ''}`} 
