@@ -7,7 +7,7 @@ description: This guide provides instructions on customizing our application.
 
 To customize Markdown parsing, navigate to `@lib/markdown.ts` and locate the `parseMdx` function. You can add your desired plugins in the `mdxOptions`. Here’s an example:
 
-```
+```ts:lib/markdown.ts
 async function parseMdx<Frontmatter>(rawMdx: string) {
     return await compileMDX<Frontmatter>({
         source: rawMdx,
@@ -32,7 +32,7 @@ Currently, this project uses the `Space_Grotesk` font. If you want to use other 
 
 To use a Google font, import your desired font from `next/font/google`, initialize it with options, and apply the variable to the `body`:
 
-```
+```tsx:app/layout.tsx
 import { Space_Grotesk } from "next/font/google";
 
 const fontSans = Space_Grotesk({
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
 
 To use a local font, you need to use the local font loader from Next.js. Pass the options and apply them to the `body`:
 
-```
+```tsx:app/layout.tsx
 import localFont from "next/font/local";
 
 const geistSans = localFont({
@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
 
 For both options, ensure that you add the variable to `tailwind.config.ts`:
 
-```
+```ts:tailwind.config.ts
 {
     // ...
     extend: {
