@@ -1,8 +1,8 @@
 import { compileMDX } from "next-mdx-remote/rsc";
+import { highlightCode } from "@/components/markdown/prism-init";
 import path from "path";
 import { promises as fs } from "fs";
 import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeCodeTitles from "rehype-code-titles";
@@ -49,6 +49,25 @@ const components = {
   tr: TableRow,
   tbody: TableBody,
   t: TableCell,
+  code: async ({ className, children, ...props }: any) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const lang = match ? match[1] : '';
+    const showLineNumbers = className?.includes('showLineNumbers');
+    
+    if (typeof children === 'string' && lang) {
+      const highlighted = await highlightCode(children, lang, { showLineNumbers });
+      return (
+        <code 
+          className={`${className}${showLineNumbers ? ' line-numbers' : ''}`} 
+          data-language={lang}
+          dangerouslySetInnerHTML={{ __html: highlighted }}
+          {...props} 
+        />
+      );
+    }
+    
+    return <code className={className} data-language={lang} {...props}>{children}</code>;
+  },
 };
 
 // can be used for other pages like blogs, Guides etc
@@ -62,17 +81,6 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
           preProcess,
           rehypeCodeTitles,
           rehypeCodeTitlesWithLogo,
-          [rehypePrism, {
-            ignoreMissing: true,
-            showLineNumbers: true,
-            aliases: {
-              js: 'javascript',
-              ts: 'typescript',
-              jsx: 'javascript',
-              tsx: 'typescript',
-              mdx: 'markdown'
-            }
-          }],
           rehypeSlug,
           rehypeAutolinkHeadings,
           postProcess,
@@ -224,7 +232,7 @@ function rehypeCodeTitlesWithLogo() {
           node.children.unshift({
             type: "element",
             tagName: "i",
-            properties: { className: [iconClass, "code-icon"] },
+            properties: { className: [iconClass, "code-icon mr-2"] },
             children: [],
           });
         }
