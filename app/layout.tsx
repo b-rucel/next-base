@@ -13,7 +13,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Next Base Template",
-  description: "A modern, responsive web platform built with Next.js and React Server Components",
+  description: "A modern, responsive web platform built with Next.js, React Server Components, and optimized for Cloudflare Pages",
 };
 
 export default function RootLayout({
