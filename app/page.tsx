@@ -41,7 +41,7 @@ export default function Home() {
       </div>
       <span className="sm:flex hidden flex-row items-start sm:gap-2 gap-0.5 text-muted-foreground text-md mt-9 -mb-12 max-[800px]:mb-12 sm:text-base text-sm font-medium border rounded-full p-2.5 px-5 bg-muted/55">
         <TerminalSquareIcon className="w-5 h-5 sm:mr-1 mt-0.5" />
-        {"npx create-aria-doc <project-directory>"}
+        {"npx degit https://github.com/b-rucel/next-base <project-directory>"}
       </span>
     </div>
   );

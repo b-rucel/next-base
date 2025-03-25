@@ -2,7 +2,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-
 First, run the development server:
 
 ```bash
@@ -30,8 +29,64 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is optimized for [Cloudflare Pages](https://pages.cloudflare.com/), leveraging server-side rendering capabilities through Pages Functions and @cloudflare/next-on-pages integration.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Key Features
+
+- **Server-Side Rendering (SSR)**
+  - Full support for Next.js SSR features
+  - Edge Runtime execution for optimal performance
+  - Seamless API Routes integration
+
+- **Development Workflow**
+  - Local development with Wrangler
+  - Hot module replacement
+  - Instant preview deployments
+
+- **Platform Benefits**
+  - Global edge network distribution
+  - Automatic HTTPS/SSL
+  - Zero-configuration setup
+  - CI/CD integration
+  - Real-time logs and analytics
+
+### Dashboard Setup and Automated CI/CD
+
+The easiest way to deploy your Next.js application is through the Cloudflare Pages dashboard:
+
+1. Log in to your Cloudflare account and navigate to Pages
+2. Click "Create a project" and select "Connect to Git"
+3. Choose your Git provider (GitHub, GitLab) and select your repository
+4. Configure your build settings:
+   - Build command: `npm run pages:build`
+   - Build output directory: `.vercel/output/static`
+5. Click "Save and Deploy"
+
+Once connected, Cloudflare Pages automatically:
+- Builds and deploys your main branch to production
+- Creates preview deployments for all branches and pull requests
+- Provides unique URLs for each deployment
+- Enables instant rollbacks and deployment history
+
+### Manual Deployment Process
+
+For local development and manual deployments, use the following npm scripts:
+
+```bash
+# Build the project for Cloudflare Pages
+npm run pages:build
+
+# Preview the build locally
+npm run preview
+
+# Deploy to Cloudflare Pages
+npm run deploy
+```
+
+> **Note**: Make sure to install the Wrangler CLI tool for local development and deployment management.
+
+The deployment configuration is specified in `wrangler.jsonc`. Make sure you have the Cloudflare CLI configured with your account credentials before deploying.
+
+For detailed deployment instructions, check out the [official Cloudflare Pages documentation](https://developers.cloudflare.com/pages/framework-guides/nextjs/ssr/).
