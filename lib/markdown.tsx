@@ -103,6 +103,26 @@ export type BaseMdxFrontmatter = {
   description: string;
 };
 
+export type ContentType = 'docs';
+
+// gets content for sections slug
+export async function getContentForSlug(slug: string, contentType: ContentType = 'docs') {
+  try {
+    const contentPath = getContentPath(slug, contentType);
+
+    const rawMdx = await fs.readFile(contentPath, "utf-8");
+    return await parseMdx<BaseMdxFrontmatter>(rawMdx);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function getContentPath(slug: string, contentType: ContentType) {
+  return path.join(process.cwd(), `/contents/${contentType}/`, `${slug}/index.mdx`);
+}
+
+
+
 export async function getDocsForSlug(slug: string) {
   try {
     const contentPath = getDocsContentPath(slug);
