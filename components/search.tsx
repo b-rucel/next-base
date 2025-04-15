@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { SearchItem } from '@/lib/search-utils';
 import { Input } from '@/components/ui/input';
 import { Search as SearchIcon } from 'lucide-react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+// import Link from 'next/link';
+// import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 
