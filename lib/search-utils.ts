@@ -1,4 +1,4 @@
-import { getAllBlogs } from './markdown';
+import { getAllDocs, getAllBlogs } from './markdown';
 
 export type SearchItem = {
   title: string;
@@ -9,9 +9,21 @@ export type SearchItem = {
 };
 
 export async function generateSearchIndex(): Promise<SearchItem[]> {
+  const docs = await getAllDocs();
   const blogs = await getAllBlogs();
-
+  
   const searchItems: SearchItem[] = [];
+
+  // Add docs to search index
+  docs?.forEach((doc) => {
+    searchItems.push({
+      title: doc.title,
+      description: doc.description || '',
+      content: '', // Note: content needs to be fetched separately
+      url: `/docs/${doc.slug}`,
+      type: 'doc'
+    });
+  });
 
   // Add blogs to search index
   blogs?.forEach((blog) => {
