@@ -1,14 +1,12 @@
 import { ModeToggle } from "@/components/theme-toggle";
 import { Coffee } from "lucide-react";
 import Link from "next/link";
-// import { buttonVariants } from "./ui/button";
-
 import Anchor from "./anchor";
 import { SheetLeftbar } from "@/components/leftbar";
 import { page_routes } from "@/lib/routes-config";
 import { SheetClose } from "@/components/ui/sheet";
-
-// import AlgoliaSearch from "./algolia-search";
+import { Search } from "@/components/search";
+import { generateSearchIndex } from "@/lib/search-utils";
 
 export const NAVLINKS = [
   {
@@ -33,19 +31,15 @@ export const NAVLINKS = [
   },
 ];
 
-// const algolia_props = {
-//   appId: process.env.ALGOLIA_APP_ID!,
-//   indexName: process.env.ALGOLIA_INDEX!,
-//   apiKey: process.env.ALGOLIA_SEARCH_API_KEY!,
-// };
+export async function Navbar() {
+  const searchIndex = await generateSearchIndex();
 
-export function Navbar() {
   return (
     <nav className="w-full border-b h-16 sticky top-0 z-50 bg-background">
       <div className="sm:container max-w-[1450px] mx-auto w-[95vw] h-full flex items-center justify-between md:gap-2">
         <div className="flex items-center sm:gap-5 gap-2.5">
           <SheetLeftbar />
-          
+
           <div className="flex items-center gap-6">
             <div className="sm:flex hidden">
               <Logo />
@@ -57,8 +51,10 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Placeholder for Algolia Search */}
-          <div className="md:w-[200px] w-[150px] h-9 rounded-md border border-input bg-transparent"></div>
+          {/* Replace placeholder with Search component */}
+          <div className="md:w-[200px] w-[150px]">
+            <Search searchIndex={searchIndex} />
+          </div>
 
           <div className="flex items-center gap-2">
             <Link

@@ -59,19 +59,19 @@ const components = {
     const match = /language-(\w+)/.exec(className || '');
     const lang = match ? match[1] : '';
     const showLineNumbers = className?.includes('showLineNumbers');
-    
+
     if (typeof children === 'string' && lang) {
       const highlighted = await highlightCode(children, lang);
       return (
-        <code 
-          className={`${className}${showLineNumbers ? ' line-numbers' : ''}`} 
+        <code
+          className={`${className}${showLineNumbers ? ' line-numbers' : ''}`}
           data-language={lang}
           dangerouslySetInnerHTML={{ __html: highlighted }}
-          {...props} 
+          {...props}
         />
       );
     }
-    
+
     return <code className={className} data-language={lang} {...props}>{children}</code>;
   },
 };
@@ -102,6 +102,26 @@ export type BaseMdxFrontmatter = {
   title: string;
   description: string;
 };
+
+export type ContentType = 'docs';
+
+// gets content for sections slug
+export async function getContentForSlug(slug: string, contentType: ContentType = 'docs') {
+  try {
+    const contentPath = getContentPath(slug, contentType);
+
+    const rawMdx = await fs.readFile(contentPath, "utf-8");
+    return await parseMdx<BaseMdxFrontmatter>(rawMdx);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function getContentPath(slug: string, contentType: ContentType) {
+  return path.join(process.cwd(), `/contents/${contentType}/`, `${slug}/index.mdx`);
+}
+
+
 
 export async function getDocsForSlug(slug: string) {
   try {
@@ -245,6 +265,52 @@ function rehypeCodeTitlesWithLogo() {
       }
     });
   };
+}
+
+async function getDocsRecursively(dir: string, parentPath: string = ''): Promise<(BaseMdxFrontmatter & { slug: string })[]> {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const results: (BaseMdxFrontmatter & { slug: string })[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    const relativePath = path.join(parentPath, entry.name);
+
+    if (entry.isDirectory()) {
+      // Check for index.mdx in the current directory
+      const indexPath = path.join(fullPath, 'index.mdx');
+      try {
+        const indexContent = await fs.readFile(indexPath, 'utf-8');
+        const frontmatter = justGetFrontmatterFromMD<BaseMdxFrontmatter>(indexContent);
+
+        // Add current directory's index.mdx
+        results.push({
+          ...frontmatter,
+          slug: relativePath
+        });
+
+        // Recursively get docs from subdirectories
+        const childDocs = await getDocsRecursively(fullPath, relativePath);
+        results.push(...childDocs);
+      } catch (err) {
+        console.log(err);
+        // No index.mdx found, just continue with subdirectories
+        const childDocs = await getDocsRecursively(fullPath, relativePath);
+        results.push(...childDocs);
+      }
+    }
+  }
+
+  return results;
+}
+
+export async function getAllDocs() {
+  const docsFolder = path.join(process.cwd(), "/contents/docs/");
+  try {
+    return await getDocsRecursively(docsFolder);
+  } catch (err) {
+    console.error('Error reading docs:', err);
+    return [];
+  }
 }
 
 // --- blog
