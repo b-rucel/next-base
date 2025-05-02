@@ -14,10 +14,12 @@ interface SearchProps {
 export function Search({ searchIndex }: SearchProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchItem[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [fuse, setFuse] = useState<Fuse<SearchItem>>();
 
@@ -65,6 +67,58 @@ export function Search({ searchIndex }: SearchProps) {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [isModalOpen]);
+
+  // Reset selected index when results change
+  useEffect(() => {
+    setSelectedIndex(results.length > 0 ? 0 : -1);
+  }, [results]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isModalOpen || results.length === 0) return;
+
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          setSelectedIndex((prevIndex) => {
+            const newIndex = prevIndex < results.length - 1 ? prevIndex + 1 : 0;
+            scrollToResult(newIndex);
+            return newIndex;
+          });
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          setSelectedIndex((prevIndex) => {
+            const newIndex = prevIndex > 0 ? prevIndex - 1 : results.length - 1;
+            scrollToResult(newIndex);
+            return newIndex;
+          });
+          break;
+        case 'Enter':
+          event.preventDefault();
+          if (selectedIndex >= 0 && selectedIndex < results.length) {
+            handleResultClick(results[selectedIndex].url);
+          }
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, results, selectedIndex]);
+
+  const scrollToResult = (index: number) => {
+    if (resultsRef.current && results.length > 0) {
+      const resultItems = resultsRef.current.querySelectorAll('button');
+      if (resultItems[index]) {
+        resultItems[index].scrollIntoView({
+          block: 'nearest',
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
 
   const handleSearch = (value: string) => {
     setQuery(value);
@@ -141,14 +195,17 @@ export function Search({ searchIndex }: SearchProps) {
               </button>
             </header>
 
-            <div className="max-h-[60vh] overflow-y-auto">
+            <div className="max-h-[60vh] overflow-y-auto" ref={resultsRef}>
               {results.length > 0 ? (
                 <div className="py-2">
                   {results.map((result, index) => (
                     <button
                       key={index}
-                      className="w-full text-left px-4 py-3 hover:bg-accent"
+                      className={`w-full text-left px-4 py-3 ${
+                        selectedIndex === index ? 'bg-blue-400/30' : 'hover:bg-accent'
+                      }`}
                       onClick={() => handleResultClick(result.url)}
+                      onMouseEnter={() => setSelectedIndex(index)}
                     >
                       <div className="flex flex-col gap-1">
                         <span className="font-medium">{result.title}</span>
@@ -165,7 +222,7 @@ export function Search({ searchIndex }: SearchProps) {
               ) : (
                 <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
                   {query ? (
-                    <p>No results found for "{query}"</p>
+                    <p>No results found for &quot;{query}&quot;</p>
                   ) : (
                     <p>Start typing to search</p>
                   )}
@@ -175,7 +232,7 @@ export function Search({ searchIndex }: SearchProps) {
 
             <footer className="flex items-center justify-between px-4 py-2 text-xs text-muted-foreground border-t">
               <div className="flex items-center">
-                <span className="mr-1">Search by</span>
+                <span className="mr-1 hidden md:block">Search by</span>
                 <span className="font-medium">Next-Base</span>
               </div>
               <div className="flex space-x-4">
