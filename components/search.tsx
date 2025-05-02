@@ -176,7 +176,7 @@ export function Search({ searchIndex }: SearchProps) {
             <footer className="flex items-center justify-between px-4 py-2 text-xs text-muted-foreground border-t">
               <div className="flex items-center">
                 <span className="mr-1">Search by</span>
-                <span className="font-medium">Your Project</span>
+                <span className="font-medium">Next-Base</span>
               </div>
               <div className="flex space-x-4">
                 <div className="flex items-center">
