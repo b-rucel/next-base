@@ -3,7 +3,8 @@ import Pagination from "@/components/pagination";
 import Toc from "@/components/toc";
 import { page_routes } from "@/lib/routes-config";
 import { notFound } from "next/navigation";
-import { getDocsForSlug } from "@/lib/markdown";
+// import { getDocsForSlug } from "@/lib/markdown";
+import { getContentForSlug } from "@/lib/markdown";
 import { Typography } from "@/components/typography";
 
 type PageProps = {
@@ -16,7 +17,7 @@ export default async function DocsPage(props: PageProps) {
   const { slug = [] } = params;
 
   const pathName = slug.join("/");
-  const res = await getDocsForSlug(pathName);
+  const res = await getContentForSlug(pathName);
 
   if (!res) notFound();
   return (
@@ -45,7 +46,7 @@ export async function generateMetadata(props: PageProps) {
   const { slug = [] } = params;
 
   const pathName = slug.join("/");
-  const res = await getDocsForSlug(pathName);
+  const res = await getContentForSlug(pathName, 'docs');
   if (!res) return {};
   const { frontmatter } = res;
   return {
