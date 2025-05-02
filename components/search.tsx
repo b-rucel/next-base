@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { SearchItem } from '@/lib/search-utils';
 import { Input } from '@/components/ui/input';
-import { Search as SearchIcon, X } from 'lucide-react';
-import { Search as SearchIcon, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 
